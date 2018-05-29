@@ -1,19 +1,10 @@
-COMMON   := -Wall -g
-CFLAGS   := $(CFLAGS) $(COMMON)
-CXXFLAGS := $(CXXFLAGS) $(COMMON)
-CC       := gcc
-CXX      := g++
+main = sort
+CC = g++
+CFLAGS = -Wall
 
-TARGETS  := vectors capacity-test
-
-.PHONY : all
-all : $(TARGETS)
-
-$(TARGETS) : % : %.cpp
-	$(CXX) $(CXXFLAGS) -o $@ $^
+$(main) : $(main).cpp
+	$(CC) $(CFLAGS) $< -o $@
 
 .PHONY : clean
 clean :
-	rm -f $(TARGETS)
-
-# vim:ft=make:foldmethod=marker:foldmarker={{{,}}}
+	rm -f $(main)
