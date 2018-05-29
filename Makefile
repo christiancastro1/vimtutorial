@@ -1,6 +1,6 @@
-main = recursion
+main = morerecursion
 CC = g++
-CFLAGS = -Wall
+CFLAGS = -Wall -O2
 
 $(main) : $(main).cpp
 	$(CC) $(CFLAGS) $< -o $(main)
