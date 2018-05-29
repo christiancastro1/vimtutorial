@@ -3,13 +3,14 @@ OBJECTS := $(SOURCES:.c=.o)
 OBJECTS := $(OBJECTS:.cpp=.o)
 HEADERS := $(wildcard *.h include/*.h)
 
-COMMON   := -O2 -Wall -Wformat=2 -std=c++98 -pedantic-errors
+COMMON   := -O2 -Wall -Wformat=2 -march=native
+# COMMON   := -O0 -Wall -Wformat=2 -march=native
 CFLAGS   := $(CFLAGS) $(COMMON)
 CXXFLAGS := $(CXXFLAGS) $(COMMON)
 CC       := gcc
 CXX      := g++
 LD       := $(CXX)
-LDFLAGS  := $(LDFLAGS)
+LDFLAGS  := $(LDFLAGS)  # -L/path/to/libs/
 LDADD    :=  # -lrt
 INCLUDE  :=  # -I../path/to/headers/
 DEFS     :=  # -DLINUX
@@ -41,4 +42,3 @@ clean :
 	rm -f $(TARGET) $(OBJECTS)
 
 # vim:ft=make:foldmethod=marker:foldmarker={{{,}}}
-
