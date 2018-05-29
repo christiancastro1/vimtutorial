@@ -1,6 +1,6 @@
-main = substring
+main = pointers
 CC = g++
-CFLAGS = -Wall -g
+CFLAGS = -Wall
 
 $(main) : $(main).cpp
 	$(CC) $(CFLAGS) $< -o $(main)
