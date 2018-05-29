@@ -1,4 +1,8 @@
 make
-./if-while 
-make && ./if-while 
-echo 1 2 3 4 5 | ./if-while
+./collatz 
+make
+./collatz 
+echo {1..10}
+echo {1..10} | ./collatz 
+echo {1..500} | ./collatz | less
+echo {1..500} | ./collatz | awk '{print $4 " " $1}' | sort -rn | less
