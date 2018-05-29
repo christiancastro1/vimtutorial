@@ -1,10 +1,13 @@
-main = sets
+binaries = maps
 CC = g++
-CFLAGS = -Wall -std=c++11
+CFLAGS = -Wall
 
-$(main) : $(main).cpp
+.PHONY : all
+all : $(binaries)
+
+maps : maps.cpp
 	$(CC) $(CFLAGS) $< -o $@
 
 .PHONY : clean
 clean :
-	rm -f $(main)
+	rm -f $(binaries)

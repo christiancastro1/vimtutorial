@@ -1,8 +1,2 @@
-make
-./collatz 
-make
-./collatz 
-echo {1..10}
-echo {1..10} | ./collatz 
-echo {1..500} | ./collatz | less
-echo {1..500} | ./collatz | awk '{print $4 " " $1}' | sort -rn | less
+./maps < maps.cpp | less
+echo "hello hello hello wow wow :D :D :D :D" | ./maps 
