@@ -1,4 +1,4 @@
-main = pointers
+main = more-arrays
 CC = g++
 CFLAGS = -Wall
 
