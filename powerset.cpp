@@ -6,17 +6,9 @@ using std::vector;
 #include <set>
 using std::set;
 
-/* TODO: write the extended GCD algorithm, which returns gcd(a,b), but
- * also sets u and v such that ua + vb = gcd(a,b).  We did this in
- * lecture, but *make sure you understand it*.  Try to write it from
- * scratch below. */
-int xgcd(int a, int b, int& u, int& v)
-{
-	return 0;
-}
-
-/* TODO: try to write the powerset function.  A prototype might
- * look something like this: */
+/* TODO: if you haven't already, try to write the powerset function.
+ * The main idea is in the notes.
+ * A prototype might look something like this. */
 set<set<int> > powerSet(set<int>& S);
 /* NOTE: you will probably find this challenging. */
 
