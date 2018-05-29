@@ -1,3 +1,4 @@
-g++ avg.cpp && ./a.out 
-echo 7 8 9 | ./a.out 
-echo 7 8 10 | ./a.out 
+make
+./if-while 
+make && ./if-while 
+echo 1 2 3 4 5 | ./if-while
