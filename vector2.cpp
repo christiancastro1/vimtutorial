@@ -16,14 +16,12 @@ vector2::vector2(const vector2& V)
 	/* here's the default copy constructor: */
 	this->size = V.size;
 	this->capacity = V.capacity;
-	this->data = V.data;
-	/* it will end in disaster!  TODO: make sure you understand why.
-	 * Imagine what will happen if a vector were passed *by value* to a
-	 * function.  Draw pictures, and keep in mind what the destructor does.
-	 * */
-	/* TODO: write a proper copy constructor that allocates a new array. */
+	// this->data = V.data; // <-- bad idea.  Here's the right way:
+	this->data = new int[this->capacity];
+	for (size_t i = 0; i < this->size; i++) {
+		this->data[i] = V.data[i];
+	}
 }
-
 
 #if 0
 int f() {
@@ -44,6 +42,7 @@ vector2::~vector2() {
  * in detail next class. */
 vector2& vector2::operator=(vector2 V)
 {
+	/* NOTE: V = W calls V.operator=(W) */
 	int* tmp = data;
 	data = V.data;
 	V.data = tmp;
@@ -60,15 +59,10 @@ vector2& vector2::operator=(vector2 V)
 
 /* push back: */
 void vector2::push_back(int x) {
-	/* TODO: try to write this.  You need to grow the array when you
-	 * run out of space.
-	 * TODO: think about the following: consider two strategies for
-	 * how to choose the new capacity.  (1) grow the array by a single
-	 * element each time (capacity++).  (2) double the capacity each
-	 * time (capacity *= 2).  What is the difference in the cost (number
-	 * of steps required) for n consecutive calls to push back when
-	 * using strategy (1) vs (2)?
-	 * */
+	if (size == capacity) {
+		// grow array
+		/* TODO finish this... */
+	}
 	this->data[size++] = x;
 }
 
