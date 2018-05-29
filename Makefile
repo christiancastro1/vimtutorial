@@ -1,9 +1,9 @@
-main = more-arrays
+main = sets
 CC = g++
-CFLAGS = -Wall
+CFLAGS = -Wall -std=c++11
 
 $(main) : $(main).cpp
-	$(CC) $(CFLAGS) $< -o $(main)
+	$(CC) $(CFLAGS) $< -o $@
 
 .PHONY : clean
 clean :
