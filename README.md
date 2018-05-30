@@ -1,2 +1,0 @@
-# vimtutorial
-Tutorial of vim

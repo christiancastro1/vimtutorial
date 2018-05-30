@@ -1,0 +1,34 @@
+VIM TUTORIAL
+                         Editing 	
+-------------------------------------------------------------------------/*{{{*/
+1.Moving around: To move the cursor use j:down k:up h:left l:right.
+
+2.Deleting characters: in normal mode hover over a character and press x to
+delete.
+
+3. To undo the last thing you did you can press u while on normal mode or
+   crtl-r basically it undoes the undo.
+   
+4. Or instead we can just press r while in normal mode to  and its undoes the undo.
+
+5. Deleting an entire line:  dd
+
+6. You can add a number before any command and it will perform it that many times.
+i.e I want to write christian 5 times : 5iChristian.  /*}}}*/
+
+                        
+						Files 
+-------------------------------------------------------------------------
+1.New File : gvim name.txt , depending on what type of file you're using
+
+2. Quit a window without saving changes  :q!
+
+3. Saving a file                          w
+
+4. Folding and unfolding                  za 
+
+5. To select text          ( shift +v) and use j k to move select around
+
+6. To make a fold: highlight what you want to fold: zf
+      - to delete a fold : zd
+	  - to open all folds: zn : za to close

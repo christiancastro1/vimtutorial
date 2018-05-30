@@ -20,7 +20,13 @@ int main()
 	cout << "size of char:    " << sizeof(char) << "\n";
 	cout << "size of int:     " << sizeof(int) << "\n";
 	cout << "size of double:  " << sizeof(double) << "\n";
-
+	cout << "size of float   " << sizeof(float)<<"\n";
+	cout <<  "size of bool   " << sizeof(bool)<<"\n";
+    cout << "THis is just a test\ao see how it works.";
+		
+    
+    // the size of gives us the number of bytes.
+#if 0
 	/* mixing types in arithmetic expressions: */
 	cout << x / 10 << "\n"; /* prints 7, as both x and 10 are int's */
 	cout << x / 10.0 << "\n"; /* prints 7.7 */
@@ -39,9 +45,9 @@ int main()
 		 * that all constants are now of type double.
 		 * */
 	}
-	/* NOTE: a single equals sign (=) does assignment,
+	/* :NOTE: a single equals sign (=) does assignment,
 	 * not an equality check!  That's what == is for. */
-
+#endif
 	return 0;
 }
 
