@@ -1,4 +1,4 @@
-main = set
+main = sets
 CC = g++
 CFLAGS = -Wall
 
