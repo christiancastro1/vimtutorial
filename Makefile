@@ -1,4 +1,4 @@
-main = GCF
+main = maps
 CC = g++
 CFLAGS = -Wall
 
