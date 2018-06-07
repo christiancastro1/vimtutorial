@@ -68,7 +68,22 @@ int main()
 	    1. Member Function is a function that is defined as part of the class
 		2. " . " dot operator to say we want to use a function and "()" operator
 	    to call the function.
-		3. The call operator () also encloses a list of arguments or possibly empty.
+		3. The call operator () also encloses a list of arguments or possibly empty
+    
+   DEF: Precondition - is a stament giving the condition that is required to be true when a function is called.
+ * The function is not guaranteed to perform as it should unless the precondition is true.
+ *
+ * DEF: Postcondition - is a statemnt describing what will be true when a function call is complete. If the function
+ * is correct and the precondition was true when the function was called,then the function will complete, and the 
+ * postcondition will be true when the function call is complete. 
+ *
+ * This is a way to describe a the functionality of a function. Should be the first thing to do when writing a function 
+ *
+ * DEF : Prototype - goes above main, it consist of a return type, function name, parameter list.This is where the pre and post
+ * conditions should be define before writing the function body.
+ *
+
+
 		
   */
 
@@ -164,13 +179,35 @@ int main()
 *
 *    -Type of a string literal is array of constant chars
 */
-za/*NOTE REFERENCE (&)
- *A reference defines an alternite name for an object.
- * & is the adress of operator.z
- *
- */
 /*NOTE POINTER
- * A compound type is a type that is defined in terms of anohter type.
+ * A compound type is a type that is defined in terms of another type.
  * A pointer is a compoun type that "points to" another type.(its an object in its own rights)
  *     - Declearing a pointer * followed by its name. e.g int *pointer;
-  
+ * A pointer holds the adress of another object by using (&) address of operator.
+ *  - the types must match b/c the type of the pointer is used to infer the type of the object 
+ *  to which the pointer points to.
+ *
+ *     -When a pointer points to an object we can use the dereference operrator (*)to access that object.
+ *     e.g
+ *     int ival=42;
+ *     int *p= &ival;
+ *     cout <<" The adress of ival is << p <<" it constains the value" << *p ;  //p holds the adress while *p holds 42.
+ *  We can have a pointer point to nothing basically NULL or nullptr or 0;
+ *  Unlike the reference by value pointers can change throughout the program.
+ * void* pointers is a special type that can hold the adress of any object
+ * e.g void *p = &variable;
+ *
+   Pointer to Pointers 
+        - A pointer is an object in memory, so like nay object it has an address
+		-We indicate each pointer level by its own *, that is we write ** for a pointer
+		to a pointer, *** for a pointer to a pointer to a pointer.
+		e.g
+		int ival =1024;
+		int *pi = &ival;
+		int **ppi = &pi;
+    Reference to Pointers
+	    - A referene is not an object, hence we amy not have a pointer to a reference.
+		-We can define a refeence to a pointer 
+		e.g   int *p;
+		      int *&r = p;
+
