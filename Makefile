@@ -1,4 +1,4 @@
-main = recurssion
+main = SecondSmallest
 CC = g++
 CFLAGS = -Wall
 
