@@ -1,4 +1,4 @@
-main = SecondSmallest
+main = set
 CC = g++
 CFLAGS = -Wall
 
