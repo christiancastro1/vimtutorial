@@ -1,4 +1,4 @@
-main = maps
+main = Power
 CC = g++
 CFLAGS = -Wall
 
