@@ -1,50 +1,59 @@
-#include<iostream>
-#include<vector>
-using namespace std;
-/* TODO: write a function that takes a vector and searches
- * for a particular value x, returning true <==> x is found.
- * NOTE: you should think carefully about how to pass the parameters,
- * especially for the vector.  (By value, reference, const reference?) */
+/* TODO: write a *binary search* on a sorted vector.  The idea is to
+ * kind of emulate the process you use to find a particular page in a book:
+ * 1. open the book to some page in the middle.
+ * 2. if the page number was too high, open to the middle of the pages to the
+ *    left; if it was too low, open to the middle of the pages to the right
+ * 3. continue as above until you found the right page.
+ *
+ * This might be a little challenging.  Ask questions if you get stuck.
+ * */
+ #include<iostream>
+ #include<vector>
+ using namespace std;
+ bool find (int&,vector<int>&);
 
-bool find(int&,vector<int>&);
-int main ()
-
-{
-  vector<int>list;
-  int target,number;
-
-
-  while (cin>>number)
-  {
-    list.push_back(number);
-  }
-  cin.clear();
-  cout << "What number do you want to find?"<<endl;
-  cin >> target;
-
-
-  cout <<"Found is 1,not found is 0: "<<find(target,list)<<endl;
-
-
-  return 0;
-}
-bool find(int &x,vector<int>&numbers)
-{
-  bool value;
-  for (size_t i = 1; i <= numbers.size(); i++)
-  {
-    if(numbers[i-1] == x){
-      value = true;
-      break;
-    }
-    else
-    {
-      value = false;
-    }
-
-  }
-  return value;
-
-}
+ int main ()
+ {
+   int number;
+   int page;
+   vector <int>list;
+   while (cin >> number)
+   {
+     list.push_back(number);
+   }
+   cin.clear();
+   cout <<"What page number do you want to find?"<<endl;
+   cin >> page;
+   cout << find (page, list);
 
 
+
+   return 0;
+ }
+ bool find (int &target, vector<int>&pagenumbers)
+ {
+   int min = 0;
+   int max = pagenumbers.size()-1;
+   int mid;
+
+   while (min <= max)
+   {
+     mid = (min + max)/2;
+
+     if (target == pagenumbers[mid])
+     {
+       return true;
+     }
+     if (target < mid)
+     {
+       max = mid;
+     }
+     if(target > mid)
+     {
+       min = mid;
+     }
+
+   }
+   return false;
+
+ }
