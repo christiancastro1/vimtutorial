@@ -1,4 +1,4 @@
-main = Cube
+main = ntermFib
 CC = g++
 CFLAGS = -Wall
 
