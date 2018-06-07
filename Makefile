@@ -1,4 +1,4 @@
-main = SumofCubes
+main = vector
 CC = g++
 CFLAGS = -Wall
 
