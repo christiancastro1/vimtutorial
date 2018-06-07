@@ -1,4 +1,4 @@
-main = string
+main = substring
 CC = g++
 CFLAGS = -Wall
 
