@@ -1,4 +1,4 @@
-main = Power
+main = recurssion
 CC = g++
 CFLAGS = -Wall
 
