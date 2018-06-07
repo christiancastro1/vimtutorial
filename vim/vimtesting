@@ -1,5 +1,5 @@
 VIM TUTORIAL
-                         Editing 	
+                         EDITING 	
 -------------------------------------------------------------------------/*{{{*/
 1.Moving around: To move the cursor use j:down k:up h:left l:right.
 
@@ -14,11 +14,32 @@ delete.
 5. Deleting an entire line:  dd
 
 6. You can add a number before any command and it will perform it that many times.
-i.e I want to write christian 5 times : 5iChristian.  /*}}}*/
+i.e I want to write christian 5 times : 5iChristian. 
 
+7. Move to begggining of word : w Move back a word : b
+
+8. Move to the end of the line: $
+
+9. To seach a letter in a line f followed by the letter e.g fx will find the x
+
+10. To move to a especific line . #G. e.g 10G to jump to line 10. 
+  - to move to the beginning of the file gg
+  - to move the end of the file GG
+  
+11. To set the number column on the side:    :set number
+
+12. Change letter case : shift ~
+
+13. To record keyboard macros qa and to stop recording q
+		 - to do the macro : @a
+     - to repeat the last thing you did (.)i
+
+14. To find words in all files grep " " * (linux commands)
+
+15. To search for words shift ? and n for next /*}}}*/
                         
 						Files 
--------------------------------------------------------------------------
+-------------------------------------------------------------------------/*{{{*//
 1.New File : gvim name.txt , depending on what type of file you're using
 
 2. Quit a window without saving changes  :q!
@@ -32,3 +53,8 @@ i.e I want to write christian 5 times : 5iChristian.  /*}}}*/
 6. To make a fold: highlight what you want to fold: zf
       - to delete a fold : zd
 	  - to open all folds: zn : za to close
+7. To have multiple windows in the same panel 1. Press alt s. To switch between them atl l
+
+8. To view the commands for pdf - on terminal infor zathura/*}}}*e
+
+9. Auto completion : ctrl n
