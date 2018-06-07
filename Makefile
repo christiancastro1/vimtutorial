@@ -1,4 +1,4 @@
-main = substring
+main = SumofCubes
 CC = g++
 CFLAGS = -Wall
 
