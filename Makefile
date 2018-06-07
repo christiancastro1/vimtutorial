@@ -1,4 +1,4 @@
-main = ntermFib
+main = functions
 CC = g++
 CFLAGS = -Wall
 
