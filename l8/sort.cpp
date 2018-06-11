@@ -74,6 +74,6 @@ int main()
  *    left; if it was too low, open to the middle of the pages to the right
  * 3. continue as above until you found the right page.
  *
- * This might be a little challenging.  Ask questions if you get stuck.
+ * This might be a little challenging.  Ask questions if you get stuck.  // completed check Practice/vector2
  * */
 

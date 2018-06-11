@@ -28,7 +28,7 @@ void test() {
 
 int main(void)
 {
-#if 1
+#if 0
 	test();
 #else
 	/* TODO: as an alternative to using the above function, just
@@ -56,3 +56,7 @@ int main(void)
  * (gdb) n
  * ...
  * */
+/*
+ * IDEA The vector updates its syze by a factor of 2 once it reaches its limit and it doesnt have enough space for the next
+ * data object inputed. Using the debugger we clearly see the size of the vector. 
+ * /

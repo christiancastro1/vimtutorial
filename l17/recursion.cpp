@@ -1,4 +1,5 @@
 #include <iostream>
+using namespace std;
 using std::cout;
 
 /* TODO: WITHOUT compiling and running this, see if you can predict
@@ -22,10 +23,31 @@ void f(int n) {
 /* TODO: write a function that recursively computes terms of the
  * fibonacci sequence.  Be careful -- it will likely be quite
  * slow on large inputs!  See if you can understand why.  */
+int fibonacci (int n){
+
+	if (n ==1){
+		return 1;
+	}
+	if (n ==0){
+		return 0;
+	}
+
+	else{ 
+      return fibonacci(n-1)+fibonacci(n-2);
+	}
+}
 
 int main(void)
 {
-	f(4);
-	cout << "\n";
+	int max = 0;
+	int i   = 0;
+	cout << "Up to what nth point in the fibonacci sequence do you want to stop ...";
+	cin  >> max;
+
+	for(int index = 0;index < max ; index++){
+		cout << fibonacci(index) << " ";
+	}
+
+	
 	return 0;
 }
