@@ -34,7 +34,7 @@ int main()
  * program (the tiny instruction *I mentioned).  Try this:
  * $ gdb a.out
  * (gdb) break main
- * (gdb) tui enable
+ * (gdb) tui enable            // give us a gui 
  * (gdb) layout asm
  * (gdb) run
  * (gdb) si
@@ -167,6 +167,60 @@ int main()
  * in a namespace. e.g std::cout denotes that cout is from the namespce std.
  * 
  * Classes give us the ability to create our own data types.
+  1. Mechanisim to create objects and member functions 
+  2. Support information hiding 
+--------------------------------------------------------------------------------------------------
+
+  e.g A class to store and manipulate a single point on a plane.
+        - initialize
+		- retrievel
+		- shift
+  It will contain to components that will be private and can only be acessed by member functions.
+
+    class point {  // this is the class defenition or interface.The header will end with .h so point.h
+
+	public:
+	// this will be the section where the prototype of the functions will be defined
+	void setPosition(double x, double y);
+	void shift      (double dx, double dy);
+	double  x       ()const {return m_x}; // the const means that these functions won't change the infomation
+	double y        ()const {return m_y};
+	
+	private:   // only member functions can access this infomation.
+	int m_x;
+	int m_y;
+	}
+   
+	The implementation of this class will be saved in another file called point.cpp
+           - function implementation void point::setPostion(x,y)
+		     basically saying that this function is in the scope of point
+		   - in the body of the function member variables and functions can all be accessed
+------------------------------------------------------------
+        		   CONSTRUCTOR
+------------------------------------------------------------
+  -constructor name is the same as the class, does not contain a return type.
+  -they are implemented justr like any other member function.
+  -is a special type of subroutine called to create an object. It prepares the new object for use, 
+  often accepting arguments that the constructor uses to set required member variables.
+  -stablishes the invariant of the class.
+
+DEF: The invariant expression describes a condition that should always be true in an object life.
+
+  1. Data emcapsulation enforces invariants
+  2. Prevents unrestricted access
+
+  If we dont make our own contructor an automatic constructor weill be created.
+  - we can create as many constructors as we want, the parameter numbers must be different to tell them apart.
+
+                  Copy Constructor
+------------------------------------------------------------
+- a copy constructor is a constructor with exactly one parameter
+- to copy the data of an object to another
+    e.g 
+	point p1(-1,8);
+	point p2(p1);   or point p2 = p1;
+
+ 
 */
 /*NOTE PRIMATIVE BUILT IN TYPES
 
