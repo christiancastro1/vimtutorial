@@ -44,7 +44,7 @@ int main()
  * r     - restart the debugging 
  * p variable - you can initialize a varible inside the debugger and then fix it later.
  * */
-/*NOTE: FUNCTION 
+:/*NOTE: FUNCTION 
  * A function defenition has four elements
  *     -return type
  *     -function name 
@@ -71,15 +71,30 @@ int main()
  * DEF : Prototype - goes above main, it consist of a return type, function name, parameter list.This is where the pre and post
  * conditions should be define before writing the function body.
  *
- * TERMINOLOGY: the variable used in the parameter
- * list (like x in fn2 or fn1) is called the *formal
- * parameter*.  When you actually make a call, like
- * fn(a) in main, the variable a is the *actual parameter*.
- * Again, for by value parameters, the formal parameter
- * is a COPY of the actual, and for by reference, it is
+ * TERMINOLOGY: the variable used in the parameter list (like x in fn2 or fn1) is called the *formal parameter*. 
+ * When you actually make a call, like fn(a) in main, the variable a is the *actual parameter*.
+ * Again, for by value parameters, the formal parameter is a COPY of the actual, and for by reference, it is
  * a SYNONYM for the actual.
- * 
- * 
+ *
+               Const Function   //Classes
+------------------------------------------------------------
+   A. The keyword const can be placed after parameter list of a member function. 
+       - A constant member function may examine the status of its object but its
+	   forbidden from changing the object. 
+	   
+	   e.g double flow() const;
+	      
+	          Default Parameters 
+------------------------------------------------------------
+    A. A default argument is a value that will be used for an argument when no 
+	actual argument is provided. 
+
+	1. The default argument is specified only one inthe prototype-and not the in functions implementation
+	2. If only some of the arguments have defaults then those arguments must be rightmost in the parameter list. 
+	     e.g int date_check (int year; int month = 7 ; int day = 22)
+		     //calling     date_check(1997)  // one 
+			 //            date_check(1997,12,29)  //does not use feault
+
  */
 /*NOTE: INPUT AND OUTPUT OBJECTS 
  * The iostream library defines 4 IO objects
@@ -154,16 +169,20 @@ int main()
  */
 /*NOTE CLASSES
  * A class defines a type along with a collection of operations that are related
- * to that type.So ojects are tpyes of a class. e.g int a; a is a type int
+ * to that type.So ojects are type of a class. e.g int a; a is a type int
  *
  * Header file for a class has a suffix .h at the end and are in quotation marks.
  * e.g #include "Sales_item.h"
+
+ * A. Functions 
+ *     1. Member Function is a function that is defined as part of the class
+ *     2. Inline member fucntions- placing a function defenition inside the class defenition. 
+ *         -you dont have to write the implementation later // should be simple since theres some inefficiency 
  *
- * 1. Member Function is a function that is defined as part of the class
- * 2. " . " dot operator to say we want to use a function and "()" operator
+ * 1. " . " dot operator to say we want to use a function and "()" operator
  * to call the function.
  *
- * 3. Scope operater (::) among other uses the scope operator is used to access names
+ * 2. Scope operater (::) among other uses the scope operator is used to access names
  * in a namespace. e.g std::cout denotes that cout is from the namespce std.
  * 
  * Classes give us the ability to create our own data types.
@@ -195,6 +214,9 @@ int main()
            - function implementation void point::setPostion(x,y)
 		     basically saying that this function is in the scope of point
 		   - in the body of the function member variables and functions can all be accessed
+	
+	- We can create as many constructors as we want but they must all have different parameter list so the 
+	compiler can tell them apart.
 ------------------------------------------------------------
         		   CONSTRUCTOR
 ------------------------------------------------------------
@@ -219,6 +241,22 @@ DEF: The invariant expression describes a condition that should always be true i
     e.g 
 	point p1(-1,8);
 	point p2(p1);   or point p2 = p1;
+
+                  Default Constructor (Default Arguments) 
+------------------------------------------------------------
+  A. A constructor with no paramters is called a default constructor.
+      - when creating an instance the use of parenthesis is optional
+	  - can be created using default arguments. 
+	e.g  class point {
+		 point() // default constructor or
+		 point(int x = 0, int y = 0) // this is also a default constructor using default arguments.
+
+  B. A default argument can be provied if the programmer doesnt provide any.
+     - they should be implemented from right to left. 
+	     e.g int date_check (int year; int month = 7 ; int day = 22)
+		     //calling     date_check(1997)  // one 
+			 //            date_check(1997,12,29)  
+
 
  
 */
@@ -259,7 +297,7 @@ DEF: The invariant expression describes a condition that should always be true i
 
      Type Casting 
 ----------------------
-   - to change a type to another type its calle typecasting
+   - to change a type to another type its called typecasting
    - e.g to change integers to characters (char)i
    - this is called a c-style cast
    e.g 
@@ -381,17 +419,6 @@ now you can type si instead of set<int>::iterator...
        -syntax : typedef datatpye newmane ; 
 	   - can also be used with pointers
  */
-/* NOTE INFORMATION 
- *    1. Object - its a region in memory with a type that specifies what infomation can be 
- *    stored there. 
- *
- *    2. Variable - its the name for the object. 
- *        - a named object is called a variable. 
- *            
- *            e.g typdef *int myptr
- *            myptr p ; // same as int *p
- *            myptr a[10] // same as int a[0];
- */
 /*NOTE RECURSIVE 
  * - recursive is the notion of perfoming the same call function withing a function 
  *   until a certain condition is met.
@@ -442,4 +469,107 @@ void f(int n) {
 		    f(3) =3                 //f(2-1)
 		 --------------------
 		    f(4) =4                 //f(4)
- */     
+*/
+/* NOTE HEADERS 
+ Some useful headers. 
+
+   A.  #include <cassert>   
+   - primary item in the cassert facility is assert, which is like a function wiht one argument.
+   - argument is a true or false, depending on the argument a certain action will be taken
+          1. if its true then nothing will occr
+		  2. if its false then it will display a message and hault the program. 
+   - these checks are called assertions. 
+   e.g assert (c >= MINIMUM_CELCIUS)
+   -assertions can be turned off by using #include NDEBUG  before the programs include directives. 
+
+   B.  #include <cstdlib>    // using namespace std
+    1. Contains  EXIT_SUCCESS
+
+ */
+/*NOTE NAMESPACE 
+ A. When a program uses different classes written by other programmers theres a possibility of 
+ a name comflic.
+     - solution to this is an orgranization technique called namespace.First we need a macro gaurd or header. 
+
+   
+                   Header Gaurd
+--------------------------------------------------------------
+1.Header guards are little pieces of code that protect the contents of a header file from being included more than once.
+
+2.Header guards are implemented through the use of preprocessor directives. The C/C++ preprocessor directives all start 
+with the # character. 
+     - they are invoked by the compiler before compilation.
+
+e.g Problem:
+                           #include "A.h"          #include "A.h"
+class A                    class B                 #include "B.h"
+{                          {
+  int x;                      A a;
+public:                       int y;               A a;
+};                         public:                 B b;
+                           };
+
+
+A.h                         B.h                      htest.cpp
+
+Running g++ htest.cpp results in the following error:
+
+In file included from B.h:1,
+                 from htest.cc:2:
+A.h:2: error: redefinition of `class A'
+A.h:2: error: previous definition of `class A'
+
+SOLUTION: One solution is to simply delete the #include "A.h" in htest.cpp
+
+                    or 
+To create header guards place:
+#ifndef unique_symbol
+#define unique_symbol
+at the beginning of the header file to be protected and #endif  (unique_symbol) at the end of the header file.
+
+IDEA The first time one of the unique symbols in a header guard is encountered, the #ifndef statement is true.
+The symbol is not defined. Because of that, all of the code between the #ifndef and #endif is included and sent 
+to the compiler. If the symbol were defined, the code between the directives would be ignored. 
+
+                        NAMESPACE 
+------------------------------------------------------------
+ In the class defenition after the macro gaurd.
+  namaspce name_youchoose {
+    // class defenition here
+  }
+#endif // end of macro gaurd. 
+
+ In the class implementation as well 
+  namespace name_youchoose {
+   // class implementation 
+  }
+When we repeat the namespce like we just did, we're adding groups to the namespace.
+  - may be in same file or different files. 
+
+  USING IT IN MAIN 
+  1. using namespace name_youchoose; 
+       - makes all items available   // similar to using namespace std;
+
+  2. using name_youchoose::Point;
+       - if we want to use a specific item  // similar to using std::cin;
+
+  3. name_youchoose::Point p;   // if you dont include using at the top. This is inside main.
+
+
+ */
+/* NOTE INFORMATION 
+ *    1. Object - its a region in memory with a type that specifies what infomation can be 
+ *    stored there. 
+ *
+ *    2. Variable - its the name for the object. 
+ *        - a named object is called a variable. 
+ *            
+ *            e.g typdef *int myptr
+ *            myptr p ; // same as int *p
+ *            myptr a[10] // same as int a[0];
+ */
+TODO: RENEW DACA IMPORTANT !!!
+
+
+
+
