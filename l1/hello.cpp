@@ -224,9 +224,9 @@ int main()
   -they are implemented justr like any other member function.
   -is a special type of subroutine called to create an object. It prepares the new object for use, 
   often accepting arguments that the constructor uses to set required member variables.
-  -stablishes the invariant of the class.
+  -stablishes the invariant of the class. 
 
-DEF: The invariant expression describes a condition that should always be true in an object life.
+DEF: The invariant expression describes a condition that should always be true in an object life.  // important to prevent a bug. 
 
   1. Data emcapsulation enforces invariants
   2. Prevents unrestricted access
@@ -257,10 +257,16 @@ DEF: The invariant expression describes a condition that should always be true i
 		     //calling     date_check(1997)  // one 
 			 //            date_check(1997,12,29)  
 
+		   FRIEND FUNCTION 
+------------------------------------------------------------
+ A friend function is a nonmember function that has special access to the member variables of a function.
+ In the prototype the keyword friend is added.This function prototype can be found on the 
+ public section of the class. 
+
 
  
 */
-/*NOTE PRIMATIVE BUILT IN TYPES
+/*NOTE PRIMATIVE BUILT IN TYPES && TYPE CASTING
 
  (and built-in) datatypes:
 * int -- for storing integers
@@ -279,8 +285,9 @@ DEF: The invariant expression describes a condition that should always be true i
 *   3. int          : 4
 *   4. float        : 4
 *   5. double       : 8
-*
+
 *   RANGE 
+   ----------
 *   For unsigned 0 to 2^(#bits) - 1 e.g with 4 bits its from 0 to 15
 *   For signed  - the most significant bit is saved for the signed.Then 
 *   we only have #bits-1 left. 2^(#bits-1) to 2^(#bits-1) -1. e.g 4bits signed -8 to 7
@@ -316,6 +323,7 @@ DEF: The invariant expression describes a condition that should always be true i
  *  to which the pointer points to.
  *
  *     -When a pointer points to an object we can use the dereference operrator (*)to access that objects data.
+        Dereference gives us direct access to the data, we can change it too. 
  *     e.g
  *     int ival=42;
  *     int *p= &ival;
@@ -340,6 +348,7 @@ DEF: The invariant expression describes a condition that should always be true i
 		-We can define a refeence to a pointer 
 		e.g   int *p
 		      int *&r = p;
+
 */
 /*NOTE STRING
  * The string class has to be included before it can be used.
@@ -471,6 +480,7 @@ void f(int n) {
 		    f(4) =4                 //f(4)
 */
 /* NOTE HEADERS 
+
  Some useful headers. 
 
    A.  #include <cassert>   
@@ -484,6 +494,7 @@ void f(int n) {
 
    B.  #include <cstdlib>    // using namespace std
     1. Contains  EXIT_SUCCESS
+    2. size_t  // holds only nonnegative numbers l
 
  */
 /*NOTE NAMESPACE 
@@ -556,19 +567,99 @@ When we repeat the namespce like we just did, we're adding groups to the namespa
   3. name_youchoose::Point p;   // if you dont include using at the top. This is inside main.
 
 
- */
+*/
 /* NOTE INFORMATION 
- *    1. Object - its a region in memory with a type that specifies what infomation can be 
- *    stored there. 
- *
- *    2. Variable - its the name for the object. 
- *        - a named object is called a variable. 
- *            
- *            e.g typdef *int myptr
- *            myptr p ; // same as int *p
- *            myptr a[10] // same as int a[0];
+     1. Object - its a region in memory with a type that specifies what infomation can be 
+     stored there. 
+ 
+     2. Variable - its the name for the object. 
+         - a named object is called a variable. 
+             
+             e.g typdef *int myptr
+             myptr p ; // same as int *p
+             myptr a[10] // same as int a[0];
+	 3. The dot (.) operator and the arrow(->) are used to reference individual members of classes
+	 unions and structures. 
+   
  */
+/*NOTE OPERATOR OVERLOAD 
+   The built in types that c++ provides are all able to use the operator functions like
+   == , != , < , > , <= and so on. When we create a new class, and instantiate an object
+   these operators are not available for use since they are not defined for that instance. 
+
+   Operators are essentially functions that take arguments: just like function overloading this 
+   is the same concept. We will define our own operators for our class.
+
+   e.g Lets say we want to test if two points are equal, usally we would do if (p1 == p2) cout<<" this are equal;
+   But this can't be accomplished yet because the compiler doesnt know what == means for the class point. 
+   Hence we have to define it by overloading the operator. 
+
+   bool operator ==(const point& p1, const point& p2){
+    
+     return (p1.x() == p2.x() && p1.y() == p2.y())
+   }
+   When this function is activate p1 == p2 , the parameters that it will receive are p1 and p2.
+
+   Defining one operator makes it easier to define other like !=. Its basically going to be calling a function 
+   inside a function. 
+
+   bool operator !=(const point& p1, const point& p2){
+
+      return !(p1 == p2);
+   }
+   NONMEMBER FUNCTION
+------------------------------
+ -For the example from above its a nonmember function that takes two operands.
+
+  MEMBER FUNCTIONS 
+------------------------------
+ -if it was a member function it would only take one operand.
+ e.g: 
+ bool operator ==(const point& p2){
+    
+     return (m_x == p2.x() && m_y == p2.y())
+   }
+   - When we call a memeber fucntion we do so on behalf of an object. 
+   - Member functions access the object on which they were called though an extra implicit parameter name this.
+     WHen we call a member function (this) is initialized with the adress of the object on which the function was invoked.
+    - This gives us direct access to the member variables
+
+	We can return *this, basically returning the object on which the function was called
+	e.g  += 
+	  Sales_data& Sales_data::combine (const Sales_data &rhs){
+	     units_sold += rhs.units_sold;
+		 revenue += rhs.revenue;
+		 return *this;
+
+	  }
+ 			
+     INPUT AND OUTPUT OVERLOADING (MUST BE PASSED BY REFERNECE AND RETURNED BY REFERENCE.)
+	--------------------------------------------------------------------------------------
+  The c++ data types can be written and read using standard input and output. We can overload this operators so
+  they work for our own class objects. 
+
+  1. The >> operator which is used to read input from an istream object.
+  2. The << operator which is used to write ouput to an ostream object.  
+
+   e.g int i;
+       cin >> i;   // reads the value of i from the standard input
+	   cout << i ;
+
+    We know that cin is an object of type istream and cout is and object of type ostream.
+	The prototype for these overloaded operators would look something like this: 
+
+	e.g:  ostream& operator <<(ostream& outs, const& point p)
+
+	Notice how the return type is a reference return type, this is because we don't want multiple cout objects since the iostream doesnt have a copy constructor.
+	- our intention is for the << function to print the point p to the ostream outs.
+	- the outs is by reference meaning that we can change it
+
+	IMPORTANT: For the >> overloading, it needs to be a friend functions since it needs direct access to the member varibles.
+
+ */
+
 TODO: RENEW DACA IMPORTANT !!!
+TODO: Assignment 2 is due monday !!! 
 
 
 
