@@ -71,7 +71,7 @@ int main()
  * DEF : Prototype - goes above main, it consist of a return type, function name, parameter list.This is where the pre and post
  * conditions should be define before writing the function body.
  *
- * TERMINOLOGY: the variable used in the parameter list (like x in fn2 or fn1) is called the *formal parameter*. 
+ * TERMINOLOGY: the variable used in the parameter list like  double sum (int val1 ,double valu2) is called the *formal parameter*. 
  * When you actually make a call, like fn(a) in main, the variable a is the *actual parameter*.
  * Again, for by value parameters, the formal parameter is a COPY of the actual, and for by reference, it is
  * a SYNONYM for the actual.
@@ -166,6 +166,15 @@ int main()
 	 && -- this gives the logical "and"
 	 || -- this gives the logical "or"
 	 !  -- this gives the logical negation
+
+	   SWITH 
+------------------------------
+	  switch (control value  ){
+	  case ' ' :   // we can have many cases 
+	  default:     // if no cases work then the default will execute 
+
+
+	  }
  */
 /*NOTE CLASSES
  * A class defines a type along with a collection of operations that are related
@@ -221,7 +230,7 @@ int main()
         		   CONSTRUCTOR
 ------------------------------------------------------------
   -constructor name is the same as the class, does not contain a return type.
-  -they are implemented justr like any other member function.
+  -they are implemented just like any other member function.
   -is a special type of subroutine called to create an object. It prepares the new object for use, 
   often accepting arguments that the constructor uses to set required member variables.
   -stablishes the invariant of the class. 
@@ -234,7 +243,7 @@ DEF: The invariant expression describes a condition that should always be true i
   If we dont make our own contructor an automatic constructor weill be created.
   - we can create as many constructors as we want, the parameter numbers must be different to tell them apart.
 
-                  Copy Constructor
+                    Copy Constructor
 ------------------------------------------------------------
 - a copy constructor is a constructor with exactly one parameter
 - to copy the data of an object to another
@@ -242,7 +251,7 @@ DEF: The invariant expression describes a condition that should always be true i
 	point p1(-1,8);
 	point p2(p1);   or point p2 = p1;
 
-                  Default Constructor (Default Arguments) 
+          Default Constructor (Default Arguments) 
 ------------------------------------------------------------
   A. A constructor with no paramters is called a default constructor.
       - when creating an instance the use of parenthesis is optional
@@ -257,11 +266,20 @@ DEF: The invariant expression describes a condition that should always be true i
 		     //calling     date_check(1997)  // one 
 			 //            date_check(1997,12,29)  
 
-		   FRIEND FUNCTION 
+		           FRIEND FUNCTION 
 ------------------------------------------------------------
  A friend function is a nonmember function that has special access to the member variables of a function.
  In the prototype the keyword friend is added.This function prototype can be found on the 
  public section of the class. 
+
+                DESTRUCTOR (DYNAMIC MEMORY)
+------------------------------------------------------------
+The primary purpose of the destrutor is to return an objects dynamic memory back to the heap when object is no longer needed. 
+1. The name name of the deconstructor is ~ followed by the name of the class. e.g ~bag();
+2. No parameters or return type.
+3. Constructors are activated automatically.
+
+          
 
 
  
@@ -291,6 +309,10 @@ DEF: The invariant expression describes a condition that should always be true i
 *   For unsigned 0 to 2^(#bits) - 1 e.g with 4 bits its from 0 to 15
 *   For signed  - the most significant bit is saved for the signed.Then 
 *   we only have #bits-1 left. 2^(#bits-1) to 2^(#bits-1) -1. e.g 4bits signed -8 to 7
+     
+    Twos Complement 
+------------------------------
+  Turn number into binary and switch each binary value to the opposite then add 1.
 *
 *   TYPE CONVERSION 
 *   ---------------
@@ -314,11 +336,14 @@ DEF: The invariant expression describes a condition that should always be true i
 		cout << (char)i << " "
 
 */
-/*NOTE POINTER
+/*NOTE POINTER && Dynamic Memory 
+ * IDEA: POINTER HOLDS THE ADDRESS OF AN OBJECT  
+ *  A. Pointers as Constant : int * const j_ptr = i_ptr; l
+ *
  * A compound type is a type that is defined in terms of another type.
  * A pointer is a compound type that "points to" another type.(its an object in its own rights)
  *     - Declearing a pointer * followed by its name. e.g int *pointer;
- * A pointer holds the adress of another object by using (&) address of operator.
+ * A pointer holds the adress of another object by using (&) address operator. This operator provides the adress of the object.
  *  - the types must match b/c the type of the pointer is used to infer the type of the object 
  *  to which the pointer points to.
  *
@@ -335,7 +360,8 @@ DEF: The invariant expression describes a condition that should always be true i
  * e.g void *p = &variable;
  *
    Pointer to Pointers 
-        - A pointer is an object in memory, so like nay object it has an address
+------------------------------
+        - A pointer is an object in memory, so like any object it has an address
 		-We indicate each pointer level by its own *, that is we write ** for a pointer
 		to a pointer, *** for a pointer to a pointer to a pointer.
 		e.g
@@ -343,11 +369,73 @@ DEF: The invariant expression describes a condition that should always be true i
 		int *pi = &ival;
 		int **ppi = &pi;
 
-   Reference to Pointers
+   Reference :to Pointers
+------------------------------
 	    - A referene is not an object, hence we may not have a pointer to a reference.
-		-We can define a refeence to a pointer 
+		-We can define a reference to a pointer  (its read from right to left)
 		e.g   int *p
 		      int *&r = p;
+			  
+    Allocating memory
+------------------------------ 
+There are two ways that memory gets allocated for data storage:
+
+    1.Compile Time (or static) Allocation
+       - Memory for named variables is allocated by the compiler
+       - Exact size and type of storage must be known at compile time
+       - For standard array declarations, this is why the size has to be constant
+    2.Dynamic Memory Allocation
+       - Memory allocated "on the fly" during run time
+       - dynamically allocated space usually placed in a program segment known as the heap or the free store
+       - Exact amount of space or number of items does not have to be known by the compiler in advance.
+	   - They dont have an identifier
+	   - To create a variable while the program is running we use the (new) operator.
+
+    The new operator 
+------------------------------
+A. Object
+The new operator allocates memory for an object and returns the adress of where
+that object is located. 
+e.g:  int *ptr; 
+       prt = new int;   // prt holds the adress that new returned, notice how integer object doesnt have a name.
+
+B. Class Object: We can also create an object of a class of our own. We must have a default constructor since 
+thats what will be called to create an instance.Depending on on the arguments a specific constructor will be called.
+
+e.g Point *ptr;
+    ptr = new point(4,5) ; // this creates a new point with point at 4,5. The constructor makes a point.
+
+C. Dynamic Arrays: We can create an array, returning the address of the first element. 
+e.g int *ptr = new int[4] // this creates an array of size 4 
+
+D. Pointer to an array of pointers : e.g Student **ptr = new Student *[5];    // pointer to pointer  this is more reliable than the one above.
+
+
+    The delete operator
+------------------------------
+  The delete operator deallocates memory, it returns it back to the heap so it can be used later. 
+  e.g int *ptr;
+	  ptr = new int;
+  When we no longer need this memory:   delete ptr;
+
+  For arrays: int *ptr;
+              ptr = new int[5];          free memory delte [] ptr;
+
+ Pointer Arithmitic
+------------------------------  
+	 int *p1;                      Lets say the adress is 900 p1 = 900;
+ p1 = new int [4];
+ p1[2] = 20;
+ cout << *(p1 + 2);           p1 +2 = 908  not 902. Because its 2*size of type. In this care its 2*4
+
+TIP: p++ automatically goes to the next object. 
+
+ point *p1;
+ p1 = new point (1.0,2.0);
+ cout << (*p1).x();
+ cout << p1->x();   // this is the same as above. 
+
+NOTE: When passing a pointer to a function its passed by value. Theres no such things as passed by pointer. 
 
 */
 /*NOTE STRING
@@ -392,6 +480,9 @@ DEF: The invariant expression describes a condition that should always be true i
 
 	     return 0;
 		 }
+    Question: STATIC ARRAY VS Dynamic Array
+   Statics is a constant pointer e.g int * cosnt thats why it only points to the first element. Thats 
+   why we have to add a value to move.  Dynamic array is usually non constant 
 
  *
  */
@@ -580,6 +671,10 @@ When we repeat the namespce like we just did, we're adding groups to the namespa
              myptr a[10] // same as int a[0];
 	 3. The dot (.) operator and the arrow(->) are used to reference individual members of classes
 	 unions and structures. 
+	 3. static keyword - indicates that the entire class has one copy of this variable, basically every object 
+	 contains the same variable.
+
+	 4. Passing an argument by value uses the copy constructor. 
    
  */
 /*NOTE OPERATOR OVERLOAD 
@@ -600,7 +695,7 @@ When we repeat the namespce like we just did, we're adding groups to the namespa
    }
    When this function is activate p1 == p2 , the parameters that it will receive are p1 and p2.
 
-   Defining one operator makes it easier to define other like !=. Its basically going to be calling a function 
+   Defining one operator makes it easier to define others like !=. Its basically going to be calling a function 
    inside a function. 
 
    bool operator !=(const point& p1, const point& p2){
@@ -611,7 +706,7 @@ When we repeat the namespce like we just did, we're adding groups to the namespa
 ------------------------------
  -For the example from above its a nonmember function that takes two operands.
 
-  MEMBER FUNCTIONS 
+  MEMBER FUNCTIONS   (this) 
 ------------------------------
  -if it was a member function it would only take one operand.
  e.g: 
@@ -619,7 +714,7 @@ When we repeat the namespce like we just did, we're adding groups to the namespa
     
      return (m_x == p2.x() && m_y == p2.y())
    }
-   - When we call a memeber fucntion we do so on behalf of an object. 
+   - When we call a memeber fucntion we do so on behalf of an object. The function is bounded to the object. 
    - Member functions access the object on which they were called though an extra implicit parameter name this.
      WHen we call a member function (this) is initialized with the adress of the object on which the function was invoked.
     - This gives us direct access to the member variables
@@ -660,7 +755,6 @@ When we repeat the namespce like we just did, we're adding groups to the namespa
 
 TODO: RENEW DACA IMPORTANT !!!
 TODO: Assignment 2 is due monday !!! 
-
 
 
 
