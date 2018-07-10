@@ -76,14 +76,14 @@ int main()
  * Again, for by value parameters, the formal parameter is a COPY of the actual, and for by reference, it is
  * a SYNONYM for the actual.
  *
-               Const Function   //Classes
+ *             Const Function   //Classes  
 ------------------------------------------------------------
    A. The keyword const can be placed after parameter list of a member function. 
        - A constant member function may examine the status of its object but its
 	   forbidden from changing the object. 
 	   
 	   e.g double flow() const;
-	      
+	 
 	          Default Parameters 
 ------------------------------------------------------------
     A. A default argument is a value that will be used for an argument when no 
@@ -93,9 +93,7 @@ int main()
 	2. If only some of the arguments have defaults then those arguments must be rightmost in the parameter list. 
 	     e.g int date_check (int year; int month = 7 ; int day = 22)
 		     //calling     date_check(1997)  // one 
-			 //            date_check(1997,12,29)  //does not use feault
-
- */
+			 //            date_check(1997,12,29)  //does not use feault  */
 /*NOTE: INPUT AND OUTPUT OBJECTS 
  * The iostream library defines 4 IO objects
  *    - to handle input:  cin  object of type istream
@@ -278,8 +276,14 @@ The primary purpose of the destrutor is to return an objects dynamic memory back
 1. The name name of the deconstructor is ~ followed by the name of the class. e.g ~bag();
 2. No parameters or return type.
 3. Constructors are activated automatically.
+              
+              THE -> OPERATOR   (member selector operator)
+------------------------------------------------------- 
+ lets say p is a pointer to a class and m is member variable. We can acces the data using the pointer 
+ 2 ways.   1. (*p).m = 5;
+           2. p->m;
+	
 
-          
 
 
  
@@ -335,6 +339,13 @@ The primary purpose of the destrutor is to return an objects dynamic memory back
 		// cout << i << " ";
 		cout << (char)i << " "
 
+	DEFAULT CONSTRUCTOR FOR BUITL IN TYPES
+-------------------------------------------------------------
+-built in types have a default constructor as well, when called it returns zero for numbers and 
+false for bools.
+   
+  e.g  int a = int();   // a will containt 0
+
 */
 /*NOTE POINTER && Dynamic Memory 
  * IDEA: POINTER HOLDS THE ADDRESS OF AN OBJECT  
@@ -358,7 +369,22 @@ The primary purpose of the destrutor is to return an objects dynamic memory back
  *  Unlike the reference by value pointers can change throughout the program.
  * void* pointers is a special type that can hold the adress of any object
  * e.g void *p = &variable;
- *
+
+    ADDRESS OPERATOR (&)
+------------------------------
+
+ - The ADDRESS operator is used to to give an object and alias name. 
+   Basically that variable will have another name the can access and alter that information;
+   
+    e.g 
+    int a = 7;
+	int &b = a;  // not b is the same as a
+    
+   - If i change a, them b changes, and vice versa. 
+
+   They both contain the same information. 
+
+
    Pointer to Pointers 
 ------------------------------
         - A pointer is an object in memory, so like any object it has an address
@@ -437,6 +463,14 @@ TIP: p++ automatically goes to the next object.
 
 NOTE: When passing a pointer to a function its passed by value. Theres no such things as passed by pointer. 
 
+
+		  DIFFERENT WAYS TO INITALIZE POINTER
+------------------------------------------------------------
+1. int *p l;    // pointer to an interger 
+2. int const *p ;  //pointer to const int    or  const int *p
+3. int * const p  // constant pointer 
+4. int const * const p   // constant pointer to constant int   or const int * const p
+
 */
 /*NOTE STRING
  * The string class has to be included before it can be used.
@@ -480,7 +514,7 @@ NOTE: When passing a pointer to a function its passed by value. Theres no such t
 
 	     return 0;
 		 }
-    Question: STATIC ARRAY VS Dynamic Array
+   Question: STATIC ARRAY VS Dynamic Array
    Statics is a constant pointer e.g int * cosnt thats why it only points to the first element. Thats 
    why we have to add a value to move.  Dynamic array is usually non constant 
 
@@ -756,5 +790,6 @@ When we repeat the namespce like we just did, we're adding groups to the namespa
 TODO: RENEW DACA IMPORTANT !!!
 TODO: Assignment 2 is due monday !!! 
 
+DATE: 6/26/18
 
 
