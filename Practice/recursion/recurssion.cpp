@@ -6,13 +6,18 @@ void printVertically(unsigned long n);
 void f(int n);
 int power(int base, int power);
 bool search(int* A, int size, int x);
+void printVertically2(int n);
+void exercise (int n);
+void printbackwards (int n );
 
 int main (){
 
-	//printVertically(2358);
+    // printVertically(2);
+	//printVertically2 (2348);
+//	exercise(5);
+    printbackwards (1997);
+
 	// cout << power(2,3);
-		array <int, 10> B= {1,2,3,4,5,6,7,8,9,10};
-		search (B,10,2);
 
 
 
@@ -40,15 +45,23 @@ void f(int n) {
 }
 void printVertically(unsigned long n)
 {
-	int temp;
 	if (n == 0){
 		return;
 	}
 	else{
-		temp = n %10;
 		printVertically(n/10);
-		cout << temp << endl;
+		cout << n%10  << endl;
 	}
+}
+void printVertically2(int n ){
+	if (n <10) cout << n <<endl;
+	else {
+		printVertically2 (n /10);
+		cout << n % 10 <<endl;
+	}
+
+
+
 }
 
 // TODO: write a recursive function to compute a^b (a to the b power)
@@ -70,8 +83,8 @@ int power (int base, int exponent){
 	 * (There are some subtle points about making sure the size is always
 	 * decreasing...)
 	 * */
-#if 1
-bool search(int* A, int size, int x)
+#if 0
+bool search(int A[], int size, int x)
 {
 	if (size < 1 )return false;
 
@@ -89,6 +102,19 @@ bool search(int* A, int size, int x)
 
 }
 #endif
+void exercise (int n){
+	cout << n <<endl;
+	if(n >1) exercise (n-1);
+	cout << n <<endl;
+}
+void printbackwards (int n){
+	if (n < 10){
+		cout <<n <<endl;
+		return; 
+	}
+	cout << n%10 << endl;
+    printbackwards 	(n/10); 
+}
 
 
 

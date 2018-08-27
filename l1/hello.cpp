@@ -93,7 +93,65 @@ int main()
 	2. If only some of the arguments have defaults then those arguments must be rightmost in the parameter list. 
 	     e.g int date_check (int year; int month = 7 ; int day = 22)
 		     //calling     date_check(1997)  // one 
-			 //            date_check(1997,12,29)  //does not use feault  */
+			 //            date_check(1997,12,29)  //does not use feault
+
+          RETURN BY ADDRESS
+------------------------------------------------------------
+Return by address refers returning an address of an object to the caller. 
+    DOWNSIDE : e.g
+
+Consider the following program: 
+
+int* doublenum (int n ){
+   int number = n *2; 
+   return &number;
+}
+When this function finishes its local variables will disapear, therefore that adress will have another value.
+Then the caller ends up with an address of nonallocated memory
+
+1. Return by adress is usally used to allocate memory e.g 
+
+   int* allocate(int size ){
+
+   return new int [size];}
+
+   int main (){
+	   int* array = allocate(25);
+   }
+
+WHEN TO USE RETURN BY ADDRESS : 1. returning dynamic memory 
+                                2. returning an argument that was passed by adress
+
+WHEN NOT TO USE               : 1.returning a varialbe that was use inside the scope of a function 
+                                2.returning a struct or class that was passed by reference. 
+		RETURN BY REFERENCE 
+------------------------------------------------------------
+Just like return by adress, the return by reference must be of some object. Not expression.
+The caller can continue modifying the object thats returned. 
+
+e.g: int& doublenum (int n ){
+     int number = n *2; 
+     return number;
+}
+
+DOWNSIDE: When the function finishes, the variable will be destroyed. The caller is going to receive a reference to 
+garbage.?
+
+e.g of proper code : 
+
+int& getelement (std::array<int,25>& array, int index){
+
+	return array[index];
+}
+int main (){
+
+	std::array<int,25>& array1;
+	getelement(array,5) = 6;     // index 5 is set to 6; 
+}
+
+
+
+*/
 /*NOTE: INPUT AND OUTPUT OBJECTS 
  * The iostream library defines 4 IO objects
  *    - to handle input:  cin  object of type istream
@@ -288,6 +346,73 @@ The primary purpose of the destrutor is to return an objects dynamic memory back
 
  
 */
+/*NOTE POLYMORPHYMS
+1. Classses related by inheritance form a hierchy
+      -base class which is the root of the hierchy (parent class), other classes 
+	  will inherit from the base class directly or indirectly.
+
+	  - derived classes are the ones the inherit from the base class.
+
+   A derived class must specify the clases from which it intends to inherit.
+   It accomplishes this with: class deriviation list: which basically is a colon followed
+   by comma seperated list of base classes   e.g class Bulk_Quote : public Quote.
+
+2. The base class defines virtual those functions it expects its derived class to override.
+    - a derived class must include in its own class body a decleration of all the virtual functions.
+	- we can specify that a derived class intends to override a function by specifying (override) after 
+	its parameter list.
+
+3. Pure virtual functions dont have a body instead before ; we must add = 0 to say its pure. e.g void size() = 0;
+   - a class that contains pure virtual functions is called an abstract class
+   - we can't create instances of abstract classes.
+
+	Dynamic Binding 
+------------------------------
+Through Dynamic binding we can use the same code to process objects of either the base class or its derived
+classes.
+  -depending on what type the object is, it will make a decision on which virtual function it should use, this 
+  decision is not made until run time thats why its called runtime binding. 
+
+  NOTE: Dynamic binding happens when a virtual function is called through a reference(or pointer ) to a base class.
+
+  1. A derived class inherits the members defined in its base class, however the member functions in a derived class
+  may not necessarilly access the members that are inherited from the base class.
+      - derived classes can access public members but not private 
+	  - protected still prohibits others from acessing but derived classes may access these member variables.
+
+Derive-to-base: the facts the the derived-to-base conversion is implicit means that we can use an object of derived
+type or reference to a derived type when a reference to the base class is required.
+
+e.g Quote item;   // object of base class
+    Bulk_Quote bulk; // object of derived class
+	Quote *p = &item;  // p point to a Quote object
+	p = &bulk;         // p points to the Quote part of bulk
+	Quote &r = bulk    // r bound to Quote part of bulk
+
+Classes USED AS A BASE CLASS
+------------------------------
+A base class can itself be a derived class. e.g
+class Base {///};
+class D1 : public Base {//};
+class D2 : public D1 {//};
+
+In this hierchy Base is a direct base to D1, and an indirect base to D2.
+A direct base class is named in the deriviation list.
+An indirect base is one that a derived class inherits from its direct base class.
+
+1. If we dont want a class to be a base class we can include the word final after its name
+
+STATIC AND DYNAMIC TYPE
+------------------------------
+static type: the statci type of an expression is always known at compile time, it is the type with which a variable 
+is declared or that an expression yields
+
+dynamic type:the dynamic type of the object in memory that the variable or expression represents, it may not be known until 
+run time. 
+
+
+ 
+ */
 /*NOTE PRIMATIVE BUILT IN TYPES && TYPE CASTING
 
  (and built-in) datatypes:
@@ -587,7 +712,7 @@ void f(int n) {
 	  PRINT: 4 3 2 1 0 1 2 3 4.
 
 	  IDEA Evey time the function is called the call stack grows downwards until a condition is met.
-	     - when the condition is met its goin
+	     - when the condition is met its goin to clear the stack. 
 		 - at the important point it will return the value of n then print it.
 		 -it will go back to remove another element and print.
 		 -it will continue doing this until the return adress is sent back to the calling function. 
@@ -603,6 +728,36 @@ void f(int n) {
 		    f(3) =3                 //f(2-1)
 		 --------------------
 		    f(4) =4                 //f(4)
+
+	e.g 2 Print number vertically. 
+
+	void vertically (unsigned int number){
+
+	   if(n < 10)
+	   cout << n;     // base case that stops recurssion, if no < 10 then it will put function calls on pause until base case is reached. 
+
+	   else 
+	   vertically (n/10)    // recursive call, when it reaches the base case it will resume all the function calls on the stack
+	   cout << number % 10 << endl;
+	}
+
+	IDEA: When it reaches 2 it will print 2. Removing vertically(2) from the stack. It will continue to the next 
+	recursive call thats on the stack and execute everything from the recursion call forward. It will basically be like 
+	a loop until the stack is clear. 
+
+call stack vertically (int n )
+------------------------------
+vertically (2348)
+------------------------------
+vertically (234)
+------------------------------
+vertically (23)
+------------------------------
+vertically (2)
+------------------------------ 
+
+
+
 */
 /* NOTE HEADERS 
 
@@ -788,7 +943,6 @@ When we repeat the namespce like we just did, we're adding groups to the namespa
  */
 
 TODO: RENEW DACA IMPORTANT !!!
-TODO: Assignment 2 is due monday !!! 
 
 DATE: 6/26/18
 
