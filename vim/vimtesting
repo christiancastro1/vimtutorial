@@ -55,6 +55,9 @@ i.e I want to write christian 5 times : 5iChristian.
 	  - to open all folds: zn : za to close
 7. To have multiple windows in the same panel 1. Press alt s. To switch between them atl l
 
+    or: alt + w, to switch bw them j and ; . This is much better
+
 8. To view the commands for pdf - on terminal infor zathura/*}}}*e
 
 9. Auto completion : ctrl n
+10. To change windows being horizontal or vertically alt + e 

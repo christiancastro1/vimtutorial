@@ -29,6 +29,10 @@ int main()
  * $ ./a.out
  * NOTE: you can see some of the commands we ran during lecture in the
  * "bash-history" file.
+ Compiling a program: g++ -c helloworld.cpp
+ then when we check ls we can see theres a new file helloworld.o
+ to put everything together we do g++ helloworld.o -o hello
+ To run: ./hellow
  * */
 /* TODO:GDB 
  * program (the tiny instruction *I mentioned).  Try this:
@@ -941,9 +945,35 @@ When we repeat the namespce like we just did, we're adding groups to the namespa
 	IMPORTANT: For the >> overloading, it needs to be a friend functions since it needs direct access to the member varibles.
 
  */
+ /* Computer Basics
+  1. All computer have the same underlying structurd called the Van Neuman architechture.
+    - I/O 
+	- Memory
+	- CPU - 2 key task 1. fetching program instructions from memory 2. Executing those instructions
+	These 3 components are connected by buses (collection of wires that carry information throug signals.)
+
+	byte - 8 bits
+	kilobyte - 2^10 bytes = 1024 bytes = 8,192 bits
+	megabyte - 2^20 bytes = 1,048,576 bytes = 8,388,608 bits
+	gigabyte - 2^30 bytes = 1073741824 bytes = 8,589,934,592 bits
+	terabyte - 2^40 bytes = 1,099,511,627,776 bytes = 9,796,093,022,208 bits
+    
+	Modern computers use different memory types. The best type of memory are the ones that send and retrieve bits from 
+	the cpu are those that represents a bit as the presence of voltage.
+	 e.g. cache and Ram( Random accesible memory)
+	 -Cache memory is usally built into the cpu, and its uses high speed circuitry. Provides extremely fast access to memory.($$$$)
+     - Ram is usually built outside the cpu, uses slow speed circuitry. Therefore accessing data is not as fast ( its cheapt too)
+	 IDEA: CACHE AND RAM  are the componets of main memory.
+
+	 - main memory is volatile, meaning that it requires constant electricity, once its turns off all the information is lost.
+	 - secondary memory- hard disk that doesnt require constant electricity
+
+	
+	
+	*/
 
 TODO: RENEW DACA IMPORTANT !!!
 
 DATE: 6/26/18
 
-
+M
